@@ -8,7 +8,7 @@ namespace GaleShapley.Model
 {
     public class Female
     {
-       
+
         public static int Count = 0;                //第几轮
 
         public int ID { get; set; }         //人员编号
@@ -19,7 +19,7 @@ namespace GaleShapley.Model
 
         public int PartnerIndexInList { get; set; }
         public List<int> MaleIDList { get; set; }      //喜好列表
-      
+
         public decimal Satisfaction { get; set; }   //满意度
         public Female(int id)
         {
@@ -31,14 +31,8 @@ namespace GaleShapley.Model
         //初始化名单
         public void InitMyList()
         {
-            List<int> list =Marry.GetInstance().MaleDic.Keys.ToList();
+            List<int> list = Marry.GetInstance().MaleDic.Keys.ToList();
             MaleIDList = Marry.GetRandomList<int>(list);
-            //Console.Write("FemaleID:  " + this.ID + "       MyList:  ");
-            //foreach (int item in MaleIDList)
-            //{
-            //    Console.Write(item + "  ");
-            //}
-            //Console.WriteLine();
         }
 
         //接受
@@ -51,7 +45,7 @@ namespace GaleShapley.Model
                     if (this.MaleIDList[i] == maleID)
                     {
                         int maleIndex = i;      //求偶者的位置
-                        if (maleIndex < this.PartnerIndexInList)    //成功
+                        if ((maleIndex + Marry.Cost) < this.PartnerIndexInList)    //成功
                         {
                             Male oldPartner = Marry.GetInstance().MaleDic[this.PartnerID];
                             oldPartner.Divorce();

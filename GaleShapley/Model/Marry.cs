@@ -9,9 +9,12 @@ namespace GaleShapley.Model
     public class Marry
     {
         public static Random rd = new Random();     //随机数   
-        public static int Number;
+        public static int Number;       //人数
+        public static int Cost;             //成本
         public Dictionary<int, Male> MaleDic;      //男性列表
         public Dictionary<int, Female> FemaleDic;      //女性列表
+        public decimal MaleSF;
+        public decimal FemaleSF;
         private static Marry instance = null;
         //需要继续匹配
         private bool NeedMatch
@@ -71,11 +74,7 @@ namespace GaleShapley.Model
             {
                 Match();
             }
-            decimal maleSatisfaction;
-            decimal femaleSatisfaction;
-            CalculateSatisfaction(out maleSatisfaction, out femaleSatisfaction);
-
-            Console.WriteLine(maleSatisfaction + "    " + femaleSatisfaction);
+            CalculateSatisfaction(out this.MaleSF, out this.FemaleSF);
         }
 
         //初始化个人喜好

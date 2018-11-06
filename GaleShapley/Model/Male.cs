@@ -30,12 +30,6 @@ namespace GaleShapley.Model
         {
             List<int> list = Marry.GetInstance().FemaleDic.Keys.ToList();
             FemaleIDList = Marry.GetRandomList<int>(list);
-            //Console.Write("MaleID:  " + this.ID + "       MyList:  ");
-            //foreach (int item in FemaleIDList)
-            //{
-            //    Console.Write(item + "  ");
-            //}
-            //Console.WriteLine();
         }
 
         //请求
