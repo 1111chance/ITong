@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{F60F0563-E879-4E1A-825B-CD204D324CB0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleAPI", "PeopleAPI\PeopleAPI.csproj", "{CD89C658-A53E-4C16-A57F-4558EAFA721A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormApp", "FormApp\FormApp.csproj", "{6C0EECD6-5949-491F-845F-B028D9423A0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F60F0563-E879-4E1A-825B-CD204D324CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F60F0563-E879-4E1A-825B-CD204D324CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F60F0563-E879-4E1A-825B-CD204D324CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F60F0563-E879-4E1A-825B-CD204D324CB0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD89C658-A53E-4C16-A57F-4558EAFA721A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD89C658-A53E-4C16-A57F-4558EAFA721A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD89C658-A53E-4C16-A57F-4558EAFA721A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD89C658-A53E-4C16-A57F-4558EAFA721A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C0EECD6-5949-491F-845F-B028D9423A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C0EECD6-5949-491F-845F-B028D9423A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C0EECD6-5949-491F-845F-B028D9423A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C0EECD6-5949-491F-845F-B028D9423A0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
