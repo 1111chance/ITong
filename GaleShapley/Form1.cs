@@ -21,35 +21,35 @@ namespace GaleShapley
         private void Start_Click(object sender, EventArgs e)
         {
             int number;
-            int cost;
-            try
+            number = Convert.ToInt32(numUDManCount.Value);
+            if (number < 1)
             {
-                number = Convert.ToInt32(tbNumber.Text);
-                cost = Convert.ToInt32(tbCost.Text);
+                number = 1;
             }
-            catch (Exception)
-            {
-                MessageBox.Show("输入数字有误。");
-                return;
-            }
-            Marry.ClearInstance();
-            Marry.Number = number;
-            Marry marry = Marry.GetInstance();
+            Marry marry = new Marry(number, number);
             marry.Start();
             dgvMale.Rows.Clear();
             dgvFemale.Rows.Clear();
-            dgvMale.Rows.Add(Marry.Number);
-            dgvFemale.Rows.Add(Marry.Number);
-            tbMaleSF.Text = "男性满意度：" + marry.MaleSF;
-            tbFemaleSF.Text = "女性满意度：" + marry.FemaleSF;
-            for (int i = 0; i < Marry.Number; i++)
+            dgvMale.Rows.Add(number);
+            dgvFemale.Rows.Add(number);
+            //tbMaleSF.Text = "男性满意度：" + marry.MaleSF;
+            //tbFemaleSF.Text = "女性满意度：" + marry.FemaleSF;
+            //for (int i = 0; i < Marry.Number; i++)
+            //{
+            //    DataGridViewRow rowMale = dgvMale.Rows[i];
+            //    rowMale.Cells["MaleID"].Value = marry.MaleDic[i].ID;
+            //    rowMale.Cells["MaleSF"].Value = marry.MaleDic[i].Satisfaction;
+            //    DataGridViewRow rowFemale = dgvFemale.Rows[i];
+            //    rowFemale.Cells["FemaleID"].Value = marry.FemaleDic[i].ID;
+            //    rowFemale.Cells["FemaleSF"].Value = marry.FemaleDic[i].Satisfaction;
+            //}
+        }
+
+        private void numUDManCount_ValueChanged(object sender, EventArgs e)
+        {
+            if (numUDManCount.Value < 1)
             {
-                DataGridViewRow rowMale = dgvMale.Rows[i];
-                rowMale.Cells["MaleID"].Value = marry.MaleDic[i].ID;
-                rowMale.Cells["MaleSF"].Value = marry.MaleDic[i].Satisfaction;
-                DataGridViewRow rowFemale = dgvFemale.Rows[i];
-                rowFemale.Cells["FemaleID"].Value = marry.FemaleDic[i].ID;
-                rowFemale.Cells["FemaleSF"].Value = marry.FemaleDic[i].Satisfaction;
+                numUDManCount.Value = 1;
             }
         }
     }
