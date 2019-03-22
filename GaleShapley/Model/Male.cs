@@ -19,17 +19,21 @@ namespace GaleShapley.Model
             this.RequestList = new List<RequestObj>();
             foreach (Female female in femaleDic.Values)
             {
+                if (Marry.Rnd.Next(30) != 1)//控制此人可以接触到的女性人数，目前所有男性的范围相同，后期可以由个人的交际能力代替
+                {
+                    continue;
+                }
                 double point = People.GetEstimatePoint(female.Point);//对对方评分
                 if (point > this.MyEstimatePoint)
                 {
-                    if ((point - this.MyEstimatePoint) / this.MyEstimatePoint < 0.2)//向上20%
+                    if ((point - this.MyEstimatePoint) / this.MyEstimatePoint < 0.2)
                     {
                         this.RequestList.Add(new RequestObj(female.ID, point));
                     }
                 }
                 else
                 {
-                    if ((this.MyEstimatePoint - point) / this.MyEstimatePoint < 0.4)//向下40%
+                    if ((this.MyEstimatePoint - point) / this.MyEstimatePoint < 0.4)
                     {
                         this.RequestList.Add(new RequestObj(female.ID, point));
                     }
@@ -38,19 +42,37 @@ namespace GaleShapley.Model
             this.RequestList = this.RequestList.OrderByDescending(a => a.EstimatePoint).ToList<RequestObj>();//降序
         }
 
-        public void Request(Dictionary<int, Female> femaleDic)
+        /// <summary>
+        /// 求婚
+        /// </summary>
+        /// <param name="maleDic"></param>
+        /// <param name="femaleDic"></param>
+        public void Request(Dictionary<int, Male> maleDic, Dictionary<int, Female> femaleDic)
         {
+            if (this.Marryed)
+            {
+                return;
+            }
             if (this.RequestList.Count == 0)
             {
                 return;
             }
             Female female = femaleDic[this.RequestList[0].ID];
-            if (female.BeRequest(this))
+            if (female.BeRequest(this, maleDic))
             {
                 this.PartnerID = female.ID;
                 this.PartnerEstimatePoint = this.RequestList[0].EstimatePoint;
             }
             this.RequestList.RemoveAt(0);
+        }
+
+        /// <summary>
+        /// 离婚
+        /// </summary>
+        public void Divorce()
+        {
+            this.PartnerID = -1;
+            this.PartnerEstimatePoint = 0;
         }
     }
 
@@ -74,54 +96,4 @@ namespace GaleShapley.Model
             this.EstimatePoint = estimatePoint;
         }
     }
-
-
-
-    //public class Male
-    //{
-    //    public int ID { get; set; }         //人员编号
-    //    public int PartnerID { get; set; }    //伴侣编号
-
-    //    public bool Marryed { get; set; }       //人员状态
-    //    public int StationInList { get; set; }      //当前状态，对应喜好列表的索引号
-    //    public List<int> FemaleIDList { get; set; }      //喜好列表
-
-    //    public decimal Satisfaction { get; set; }   //满意度
-    //    public Male(int id)
-    //    {
-    //        this.ID = id;
-    //        this.Marryed = false;
-    //        this.PartnerID = -1;
-    //    }
-    //    //初始化名单
-    //    public void InitMyList()
-    //    {
-    //        List<int> list = Marry.GetInstance().FemaleDic.Keys.ToList();
-    //        FemaleIDList = Marry.GetRandomList<int>(list);
-    //    }
-
-    //    //请求
-    //    public void Request()
-    //    {
-    //        int index = this.FemaleIDList[StationInList];
-    //        Female female =Marry.GetInstance().FemaleDic.ElementAt(index).Value;
-    //        if (female.Accept(this.ID))
-    //        {
-    //            this.PartnerID = female.ID;
-    //            this.Marryed = true;
-    //        }
-    //        else
-    //        {
-    //            this.StationInList++;
-    //        }
-    //    }
-
-    //    //离婚
-    //    public void Divorce()
-    //    {
-    //        this.Marryed = false;
-    //        this.PartnerID = -1;
-    //        this.StationInList++;
-    //    }
-    //}
 }

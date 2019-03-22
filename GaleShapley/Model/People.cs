@@ -8,6 +8,7 @@ namespace GaleShapley.Model
 {
     public class People
     {
+        static double MaxPoint = 1000;
         /// <summary>
         /// 个人编号
         /// </summary>
@@ -35,6 +36,9 @@ namespace GaleShapley.Model
         /// 配偶得分
         /// </summary>
         public double PartnerEstimatePoint { get; set; }
+        /// <summary>
+        /// 满意度
+        /// </summary>
         public double Satisfaction
         {
             get
@@ -43,14 +47,15 @@ namespace GaleShapley.Model
                 {
                     return 0;
                 }
-                double mul = Math.Abs(this.MyEstimatePoint - this.PartnerEstimatePoint) / this.MyEstimatePoint;
+                //很难找到合适的计算满意度的方法
+                double mul = Math.Abs(this.MyEstimatePoint - this.PartnerEstimatePoint) / People.MaxPoint;
                 if (this.MyEstimatePoint > this.PartnerEstimatePoint)
                 {
-                    return 60.0 * (1 - mul);
+                    return 50.0 * (1 - mul);
                 }
                 else
                 {
-                    return 60.0 * (1 + mul);
+                    return 50.0 * (1 + mul);
                 }
             }
         }
@@ -58,7 +63,7 @@ namespace GaleShapley.Model
         {
             this.PartnerID = -1;
             this.ID = id;
-            this.Point = Marry.Rnd.Next(0, 1000);
+            this.Point = Marry.Rnd.NextDouble() * People.MaxPoint;   //个人得分在0-1000之间，现在是平均分布，可修改为正态分布
             this.MyEstimatePoint = People.GetEstimatePoint(this.Point);
         }
 
@@ -69,6 +74,7 @@ namespace GaleShapley.Model
         /// <returns>估分</returns>
         public static double GetEstimatePoint(double point)
         {
+            return point;
             double mul = 0.8 + Marry.Rnd.NextDouble() * 0.4;    //控制估分在80% - 120% 之间
             return point * mul;
         }

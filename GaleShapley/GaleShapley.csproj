@@ -50,6 +50,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\ExtendMethod.cs" />
     <Compile Include="Model\Female.cs" />
     <Compile Include="Model\Male.cs" />
     <Compile Include="Model\Marry.cs" />
