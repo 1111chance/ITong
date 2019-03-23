@@ -26,14 +26,16 @@ namespace GaleShapley.Model
                 double point = People.GetEstimatePoint(female.Point);//对对方评分
                 if (point > this.MyEstimatePoint)
                 {
-                    if ((point - this.MyEstimatePoint) / this.MyEstimatePoint < 0.2)
+                    double mul = (point - this.MyEstimatePoint) / this.MyEstimatePoint;
+                    if (mul < 0.1)
                     {
                         this.RequestList.Add(new RequestObj(female.ID, point));
                     }
                 }
                 else
                 {
-                    if ((this.MyEstimatePoint - point) / this.MyEstimatePoint < 0.4)
+                    double mul = (this.MyEstimatePoint - point) / this.MyEstimatePoint;
+                    if (mul < 0.4)
                     {
                         this.RequestList.Add(new RequestObj(female.ID, point));
                     }

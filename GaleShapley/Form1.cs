@@ -44,15 +44,22 @@ namespace GaleShapley
                 DataGridViewRow rowMale = dgvMale.Rows[index];
                 index++;
                 rowMale.Cells["MaleID"].Value = male.ID;
-                rowMale.Cells["MalePoint"].Value = male.Point.ToMyString();
-                rowMale.Cells["MaleESPoint"].Value = male.MyEstimatePoint.ToMyString();
-                rowMale.Cells["MaleSF"].Value = male.Satisfaction.ToMyString();
+                rowMale.Cells["MalePoint"].Value = male.Point;
+                rowMale.Cells["MaleESPoint"].Value = male.MyEstimatePoint;
+                rowMale.Cells["MaleSF"].Value = male.Satisfaction;
 
                 rowMale.Cells["FemaleID"].Value = female.ID;
-                rowMale.Cells["FemalePoint"].Value = female.Point.ToMyString();
-                rowMale.Cells["FemaleESPoint"].Value = female.MyEstimatePoint.ToMyString();
-                rowMale.Cells["FemaleSF"].Value = female.Satisfaction.ToMyString();
+                rowMale.Cells["FemalePoint"].Value = female.Point;
+                rowMale.Cells["FemaleESPoint"].Value = female.MyEstimatePoint;
+                rowMale.Cells["FemaleSF"].Value = female.Satisfaction;
             }
+            dgvMale.Columns["MalePoint"].DefaultCellStyle.Format = "0";
+            dgvMale.Columns["MaleESPoint"].DefaultCellStyle.Format = "0";
+            dgvMale.Columns["MaleSF"].DefaultCellStyle.Format = "0";
+            dgvMale.Columns["FemalePoint"].DefaultCellStyle.Format = "0";
+            dgvMale.Columns["FemaleESPoint"].DefaultCellStyle.Format = "0";
+            dgvMale.Columns["FemaleSF"].DefaultCellStyle.Format = "0";
+
             dgvPeople.Rows.Clear();
             dgvPeople.Rows.Add(marry.SingleCount);
             index = 0;
@@ -63,8 +70,8 @@ namespace GaleShapley
                     DataGridViewRow row = dgvPeople.Rows[index];
                     index++;
                     row.Cells["PeopleID"].Value = male.ID;
-                    row.Cells["PeoplePoint"].Value = male.Point.ToMyString();
-                    row.Cells["PeopleESPoint"].Value = male.MyEstimatePoint.ToMyString();
+                    row.Cells["PeoplePoint"].Value = male.Point;
+                    row.Cells["PeopleESPoint"].Value = male.MyEstimatePoint;
                     row.Cells["PeopleSex"].Value = "男";
                 }
             }
@@ -75,11 +82,13 @@ namespace GaleShapley
                     DataGridViewRow row = dgvPeople.Rows[index];
                     index++;
                     row.Cells["PeopleID"].Value = female.ID;
-                    row.Cells["PeoplePoint"].Value = female.Point.ToMyString();
-                    row.Cells["PeopleESPoint"].Value = female.MyEstimatePoint.ToMyString();
+                    row.Cells["PeoplePoint"].Value = female.Point;
+                    row.Cells["PeopleESPoint"].Value = female.MyEstimatePoint;
                     row.Cells["PeopleSex"].Value = "女";
                 }
             }
+            dgvPeople.Columns["PeoplePoint"].DefaultCellStyle.Format = "0";
+            dgvPeople.Columns["PeopleESPoint"].DefaultCellStyle.Format = "0";
         }
 
         private void numUDManCount_ValueChanged(object sender, EventArgs e)

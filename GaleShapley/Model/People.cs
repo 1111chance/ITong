@@ -8,7 +8,8 @@ namespace GaleShapley.Model
 {
     public class People
     {
-        static double MaxPoint = 1000;
+        private static double MaxPoint = 1000;
+        private static double MinPoint = 200;
         /// <summary>
         /// 个人编号
         /// </summary>
@@ -63,7 +64,7 @@ namespace GaleShapley.Model
         {
             this.PartnerID = -1;
             this.ID = id;
-            this.Point = Marry.Rnd.NextDouble() * People.MaxPoint;   //个人得分在0-1000之间，现在是平均分布，可修改为正态分布
+            this.Point = Marry.Rnd.NextDouble() * (People.MaxPoint - People.MinPoint) + People.MinPoint;   //个人得分在0-1000之间，现在是平均分布，可修改为正态分布
             this.MyEstimatePoint = People.GetEstimatePoint(this.Point);
         }
 
